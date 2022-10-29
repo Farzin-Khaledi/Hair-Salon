@@ -8,11 +8,14 @@ const appointmentSchema = new Schema(
         type: String,
         enum: [
           "jen's haircut",
-          'beard trim',
+          "kid's haircut",
           "lady's haircut",
+          'beard trim',
           'highlight',
           'color',
+          'styling',
         ],
+        lowercase: true,
         required: true,
       },
     ],
@@ -22,7 +25,7 @@ const appointmentSchema = new Schema(
     },
     durationInMinutes: {
       type: Number,
-      required: true,
+      default: 0,
     },
     date: {
       type: Date,
