@@ -8,17 +8,24 @@ const stylistSchema = new Schema(
       required: true,
       trim: true,
     },
-    gender: {
-      type: String,
-      enum: ['Male', 'Female'],
-      required: true,
-    },
+
     email: {
       type: String,
       required: [true, 'Email is required.'],
       unique: true,
       lowercase: true,
       trim: true,
+    },
+    mobile: {
+      type: Number,
+      validate: {
+        validator: function (v) {
+          return /\d{10}/.test(v);
+        },
+        message: '{VALUE} is not a valid 10 digit number!',
+        unique: true,
+        trim: true,
+      },
     },
 
     appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointment' }],
