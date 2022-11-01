@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
+
 
 const services = [
   {
@@ -47,7 +47,7 @@ function AddAppointment(props) {
     // Send the token through the request "Authorization" Headers
     axios
       .post(
-        `${API_URL}/api/appointments`,
+        `${process.env.REACT_APP_API_URL}/api/appointments`,
         requestBody,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
@@ -70,7 +70,10 @@ function AddAppointment(props) {
         <select multi>
           {services.map(service =>(<><option>{service.name}:{service.price}£ ,{service.duration} mins </option></>))}
         </select>
-
+        <input>
+        <label>date : </label>
+        
+        </input>
 
         <button type="submit">Submit</button>
       </form>

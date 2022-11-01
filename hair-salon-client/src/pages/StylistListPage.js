@@ -4,9 +4,6 @@ import axios from "axios";
 import StylistCard from "../components/StylistCard";
 import AddAppointment from "../components/AddAppointment";
 
-const API_URL = "http://localhost:5005";
-
-
 function StylistListPage() {
 
   const [stylists, setStylists] = useState([]);
@@ -18,7 +15,7 @@ function StylistListPage() {
     // Send the token through the request "Authorization" Headers
     axios
       .get(
-      `${API_URL}/api/stylists`,
+      `${process.env.REACT_APP_API_URL}/api/stylists`,
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
       .then((response) => setStylists(response.data))

@@ -3,7 +3,6 @@ import axios from "axios";
 // import AddAppointment from "./../components/AddAppointment";
 import AppointmentCard from "./../components/AppointmentCard";
 
-const API_URL = "http://localhost:5005";
 
 
 function AppointmentListPage() {
@@ -17,7 +16,7 @@ function AppointmentListPage() {
     // Send the token through the request "Authorization" Headers
     axios
       .get(
-      `${API_URL}/api/appointments`,
+      `${process.env.REACT_APP_API_URL}/api/appointments`,
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
       .then((response) => setAppointments(response.data))
