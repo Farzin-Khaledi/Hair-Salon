@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import DateTimePicker from 'react-datetime-picker';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -24,7 +26,7 @@ function EditAppointment(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }    
       )
       .then((response) => {
-        const oneAppointment = response._id;
+        const oneAppointment = response.data;
         setService(oneAppointment.service);
         setDate(oneAppointment.date);
       })
@@ -71,11 +73,14 @@ function EditAppointment(props) {
   } 
   
   return (
-    <div className="EditAppointment">
-      <h3>Edit the Appointment</h3>
-
+    <div>
+    <Card style={{ width: '28rem' }}>
+      <Card.Img variant="top" src="https://cdn.mos.cms.futurecdn.net/cij4VhBaee5J95WdQkvr8Z-1920-80.jpg.webp" />
+      <Card.Body>
+      <Card.Title>Edit the Appointment</Card.Title>
       <form onSubmit={handleSubmit}>
-            <select onChange={handleChange}>
+      <Card.Text>
+            <select value={service} label="Select the service" size="lg" onChange={handleChange}>
                   <option value={"jen's haircut"}>Jen's haircut 20£</option>
                   <option value={"lady's haircut"}>Lady's haircut 20£</option>
                   <option value={"beard trim"}>Beard trim 10£</option>
@@ -84,16 +89,26 @@ function EditAppointment(props) {
                   <option value={"kid's haircut"}>Kid's haircut 10£</option>
                   <option value={"beard trim"}>Beard trim 10£</option>
             </select>
-            <div>
-              <DateTimePicker onChange={setDate} value={date} />
-              </div>
-        
-        <button type="submit">Edit Your Booking</button>
+            </Card.Text>
+            <Card.Text><DateTimePicker id="calender" onChange={setDate} value={date} /></Card.Text>
+              
+          
+             
+        <Button variant="success" type="submit">Edit Your Booking</Button>
+        <Button variant="danger" onClick={deleteProject}>Delete Booking</Button>
       </form>
 
-      <button onClick={deleteProject}>Delete Booking</button>
+     
+      </Card.Body>
+    </Card>
     </div>
   );
 }
 
 export default EditAppointment;
+
+
+
+
+   
+       

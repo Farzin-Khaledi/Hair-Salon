@@ -28,7 +28,7 @@ router.post('/stylists', isAuthenticated, (req, res, next) => {
 // GET /api/stylists  -  Get list of stylists
 router.get('/stylists', (req, res, next) => {
   Stylist.find()
-    // .populate('appointments')
+    .populate('appointments')
     .then((allStylists) => {
       res.json(allStylists);
     })
@@ -54,7 +54,7 @@ router.get('/stylists/:stylistId', (req, res, next) => {
   // We use .populate() method to get swap the `_id`s for the actual Appointment documents
 
   Stylist.findById(stylistId)
-    // .populate('appointments')
+    .populate('appointments')
     .then((Stylist) => res.json(Stylist))
     .catch((err) => {
       console.log('error getting Stylist details...', err);

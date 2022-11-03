@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function AddAppointment({refreshAppointment}) {
   const [service, setService] = useState('');
@@ -43,10 +44,15 @@ function AddAppointment({refreshAppointment}) {
   } 
 //const animatedComponents = makeAnimated();
   return (
-      <div className="AddAppointment">
-      <h3>Make an appointment</h3>
-       <form onSubmit={handleSubmit}>
-            <select onChange={handleChange}>
+
+    <div>
+    <Card style={{ width: '28rem' }}>
+      <Card.Img variant="top" src="https://cdn.mos.cms.futurecdn.net/cij4VhBaee5J95WdQkvr8Z-1920-80.jpg.webp" />
+      <Card.Body>
+      <Card.Title>Edit the Appointment</Card.Title>
+      <form onSubmit={handleSubmit}>
+      <Card.Text>
+            <select label="Select the service" size="lg" onChange={handleChange}>
                   <option value={"jen's haircut"}>Jen's haircut 20£</option>
                   <option value={"lady's haircut"}>Lady's haircut 20£</option>
                   <option value={"beard trim"}>Beard trim 10£</option>
@@ -55,13 +61,21 @@ function AddAppointment({refreshAppointment}) {
                   <option value={"kid's haircut"}>Kid's haircut 10£</option>
                   <option value={"beard trim"}>Beard trim 10£</option>
             </select>
-            <div>
-              <DateTimePicker onChange={setDate} value={date} />
-              </div>
-        
-        <button type="submit">Book</button>
+            </Card.Text>
+            <Card.Text><DateTimePicker id="calender" onChange={setDate} value={date} /></Card.Text>
+              
+          
+             
+        <Button variant="success" type="submit">Confirm Booking</Button>
+    
       </form>
+
+     
+      </Card.Body>
+    </Card>
     </div>
+
+
   );
 }
 

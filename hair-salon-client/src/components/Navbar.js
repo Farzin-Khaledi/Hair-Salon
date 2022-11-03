@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
 
+
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider `value` prop
@@ -20,7 +21,7 @@ function Navbar() {
       {isLoggedIn && (
         <>
            <Link to={`/add-stylist`}>
-        <button>Rigister Stylist</button>
+        <button>Register Stylist</button>
       </Link>
           <Link to="/appointments">
             <button>Appointments</button>

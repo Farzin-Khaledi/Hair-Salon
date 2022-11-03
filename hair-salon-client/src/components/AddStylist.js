@@ -26,10 +26,15 @@ function AddStylist() {
     const requestBody = { email, password, name, mobile };
 
     console.log(requestBody)
+
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken');
+
     // Make an axios request to the API
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
-    axios.post(`${process.env.REACT_APP_API_URL}/api/stylists`, requestBody)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/stylists`, requestBody,
+    { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         navigate("/login");
       })
@@ -42,7 +47,7 @@ function AddStylist() {
   
   return (
     <div className="SignupPage">
-      <h1>Rigister Stylist</h1>
+      <h1>Register Stylist</h1>
 
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
