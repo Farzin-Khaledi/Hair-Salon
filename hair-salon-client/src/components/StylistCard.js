@@ -1,6 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 
@@ -12,12 +10,10 @@ import Card from 'react-bootstrap/Card';
 function StylistCard ( {stylist} ) {
 
   return (
-    <Container>
-      <Row>
-        <Col> 
+  
          <div>
           <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://www.mudpak.co.uk/wp-content/uploads/2021/09/banner.png" />
+      <Card.Img variant="top" src="" />
       <Card.Body>
         <Card.Title>{stylist.name} Profile</Card.Title>
         <Card.Text></Card.Text>
@@ -31,9 +27,7 @@ function StylistCard ( {stylist} ) {
           </Card.Body>
     </Card>
       </div>
-    </Col>
-      </Row>
-    </Container>
+
   
 
   );

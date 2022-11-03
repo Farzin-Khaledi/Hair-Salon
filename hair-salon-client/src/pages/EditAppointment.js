@@ -26,7 +26,7 @@ function EditAppointment(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }    
       )
       .then((response) => {
-        const oneAppointment = response.data;
+        const oneAppointment =response
         setService(oneAppointment.service);
         setDate(oneAppointment.date);
       })

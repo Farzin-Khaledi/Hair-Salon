@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
+import Button from 'react-bootstrap/Button';
 
 
 function Navbar() {
@@ -9,33 +10,33 @@ function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav>
+    <nav >
       <Link to="/">
-        <button>Home</button>
+        <Button >Home</Button>
       </Link>
            <Link to="/stylists">
-            <button>Stylists</button>
+            <Button>Stylists</Button>
      </Link>
        
 
       {isLoggedIn && (
         <>
            <Link to={`/add-stylist`}>
-        <button>Register Stylist</button>
+        <Button>Register Stylist</Button>
       </Link>
           <Link to="/appointments">
-            <button>Appointments</button>
+            <Button>Appointments</Button>
           </Link>
   
-          <button onClick={logOutUser}>Logout</button>
+          <Button onClick={logOutUser}>Logout</Button>
           <span>{user && user.name}</span>
         </>
       )}
       
       {!isLoggedIn && (
         <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
+          <Link to="/signup"> <Button>Sign Up</Button> </Link>
+          <Link to="/login"> <Button>Login</Button> </Link>
         </>
       )}      
     </nav>

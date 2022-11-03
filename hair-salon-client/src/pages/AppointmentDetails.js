@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-//import AddAppointment from "../components/AddAppointment";
-// import AddAppointment from "../components/AddAppointment";
-// import AppointmentCard from "../components/AppointmentCard";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function AppointmentDetails(props) {
   const [appointment, setAppointment] = useState(null);
@@ -36,21 +35,27 @@ function AppointmentDetails(props) {
   return (
     <div className="AppointmentDetails">
       {appointment && (
-        <>
-          <h1>{appointment.service}</h1>
-          <p>{appointment.date}</p>
-        </>
+      <>
+         <Card style={{ width: '28rem' }}>
+         <Card.Img variant="top" src="https://cdn.mos.cms.futurecdn.net/cij4VhBaee5J95WdQkvr8Z-1920-80.jpg.webp" />
+         <Card.Body>
+         <Card.Title>Appointment Details</Card.Title>
+         <Card.Text>{appointment.service}</Card.Text>
+         <Card.Text>{appointment.date}</Card.Text>
+         </Card.Body>
+    </Card>
+    </>
       )}
 
           
 
 
       <Link to="/appointments">
-        <button>Back to appointments</button>
+        <Button variant="warning" >Back to appointments</Button>
       </Link>
           
       <Link to={`/appointments/edit/${appointmentId}`}>
-        <button>Edit Appointment</button>
+        <Button variant="success" >Edit Appointment</Button>
       </Link>
       
     </div>
