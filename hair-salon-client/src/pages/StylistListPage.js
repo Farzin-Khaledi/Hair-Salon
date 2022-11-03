@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import AddAppointment from "./../components/AddAppointment";
+//import AddAppointment from "./../components/AddAppointment";
 import StylistCard from "../components/StylistCard";
-import AddAppointment from "../components/AddAppointment";
+
 
 function StylistListPage() {
 
@@ -28,13 +28,14 @@ function StylistListPage() {
     getAllStylists();
   }, [] );
 
-  
   return (
+
+  
     <div className="StylistListPage">
-      <AddAppointment refreshStylists={getAllStylists} /> 
-      { stylists.map((stylist) => <StylistCard stylist={stylist} />  )} 
-       
+      { stylists.map((stylist) => <StylistCard stylist={stylist} /> )}
+  
     </div>
+
   );
 }
 

@@ -5,44 +5,41 @@ const User = require('../models/User.model');
 const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 function setNewValues(obj) {
-  const { services, userId, stylistId } = obj;
-  const date = new Date(obj.date);
+  const { service, date, userId, stylistId } = obj;
   let price = 0;
-  let durationInMinutes = 0;
+  let duration = 0;
 
-  services.forEach((element) => {
-    switch (element) {
-      case "jen's haircut":
-        price += 20;
-        durationInMinutes += 30;
-        break;
-      case "lady's haircut":
-        price += 20;
-        durationInMinutes += 30;
-        break;
-      case 'beard trim':
-        price += 10;
-        durationInMinutes += 15;
-        break;
-      case 'color':
-        price += 45;
-        durationInMinutes += 40;
-        break;
-      case "Kid's haircut":
-        price += 10;
-        durationInMinutes += 20;
-        break;
+  switch (service) {
+    case "jen's haircut":
+      price += 20;
+      duration += 30;
+      break;
+    case "lady's haircut":
+      price += 20;
+      duration += 30;
+      break;
+    case 'beard trim':
+      price += 10;
+      duration += 15;
+      break;
+    case 'color':
+      price += 45;
+      duration += 40;
+      break;
+    case "Kid's haircut":
+      price += 10;
+      duration += 20;
+      break;
 
-      default:
-        "we don't offer this servise Sorry :(";
-        break;
-    }
-  });
+    default:
+      "we don't offer this servise Sorry :(";
+      break;
+  }
 
   const newObj = {
-    services,
+    service,
     price,
-    durationInMinutes,
+    duration,
     date,
     stylistId: stylistId,
     userId: userId,
@@ -54,7 +51,6 @@ function setNewValues(obj) {
 router.post('/appointments', (req, res, next) => {
   const obj = req.body;
   const newAppointment = setNewValues(obj);
-
   Appointment.create(newAppointment)
     .then((response) => res.json(response))
     .catch((err) => {
@@ -69,7 +65,6 @@ router.post('/appointments', (req, res, next) => {
 // GET /api/appointments  -  Get list of appointments
 router.get('/appointments', (req, res, next) => {
   Appointment.find()
-    .populate('services')
     .then((allAppointments) => {
       res.json(allAppointments);
     })
@@ -94,10 +89,9 @@ router.get(
       return;
     }
 
-    // Each Appointment document has `services` array holding `_id`s of Service documents
+    // Each Appointment document has `service` array holding `_id`s of Service documents
     // We use .populate() method to get swap the `_id`s for the actual Service documents
     Appointment.findById(appointmentId)
-      .populate('services')
       .then((Appointment) => res.json(Appointment))
       .catch((err) => {
         console.log('error getting Appointment details...', err);

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import AddAppointment from "./../components/AddAppointment";
+import AddAppointment from "./../components/AddAppointment";
 import AppointmentCard from "./../components/AppointmentCard";
-
-
 
 function AppointmentListPage() {
 
@@ -33,8 +31,8 @@ function AppointmentListPage() {
   
   return (
     <div className="AppointmentListPage">
-
-      { appointments.map((appointment) => <AppointmentCard appointment={appointment} />  )} 
+      <AddAppointment refreshAppointment={getAllAppointments} />
+      { appointments.map((appointment) => <AppointmentCard key={appointment._id}{...appointment} />  )} 
        
     </div>
   );

@@ -4,13 +4,15 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import StylistListPage from "./pages/StylistListPage";
 import AppointmentListPage from "./pages/AppointmentListPage";
-// import ProjectDetailsPage from "./pages/ProjectDetailsPage";
+import AppointmentDetails from "./pages/AppointmentDetails";
 // import EditProjectPage from "./pages/EditProjectPage";
 import AddAppointment from "./components/AddAppointment";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import AddStylist from "./components/AddStylist";
+import EditAppointment from "./pages/EditAppointment";
 
 function App() {
   return (
@@ -34,16 +36,15 @@ function App() {
           path="/stylists"
           element={ <StylistListPage />} 
         />
-        {/* <Route
-          path="/projects/:projectId"
-          element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
+       <Route
+          path="/appointments/:appointmentId"
+          element={ <AppointmentDetails />  }
         />
+        <Route path="/add-stylist" element={ <IsPrivate><AddStylist /> </IsPrivate>} />
 
-        <Route
-          path="/projects/edit/:projectId"
-          element={ <IsPrivate> <EditProjectPage /> </IsPrivate> } 
-        /> */}
-        
+        <Route path="/appointments/edit/:appointmentId" element={<IsPrivate> <EditAppointment /> </IsPrivate>} />
+
+
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
 

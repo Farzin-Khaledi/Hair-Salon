@@ -14,18 +14,18 @@ function Navbar() {
       </Link>
            <Link to="/stylists">
             <button>Stylists</button>
-          </Link>
+     </Link>
+       
 
       {isLoggedIn && (
         <>
+           <Link to={`/add-stylist`}>
+        <button>Rigister Stylist</button>
+      </Link>
           <Link to="/appointments">
             <button>Appointments</button>
           </Link>
-
-          <Link to="/add-appointments">
-            <button>Make An Appointment</button>
-          </Link>
-        
+  
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
         </>

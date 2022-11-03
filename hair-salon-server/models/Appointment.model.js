@@ -3,27 +3,25 @@ const { Schema, model } = require('mongoose');
 // TODO: Please make sure you edit the Appointment model to whatever makes sense in this case
 const appointmentSchema = new Schema(
   {
-    services: [
-      {
-        type: String,
-        enum: [
-          "jen's haircut",
-          "kid's haircut",
-          "lady's haircut",
-          'beard trim',
-          'highlight',
-          'color',
-          'styling',
-        ],
-        lowercase: true,
-        required: true,
-      },
-    ],
+    service: {
+      type: String,
+      enum: [
+        "jen's haircut",
+        "kid's haircut",
+        "lady's haircut",
+        'beard trim',
+        'highlight',
+        'color',
+        'styling',
+      ],
+      lowercase: true,
+      required: true,
+    },
     price: {
       type: Number,
       default: 0,
     },
-    durationInMinutes: {
+    duration: {
       type: Number,
       default: 0,
     },
@@ -31,6 +29,7 @@ const appointmentSchema = new Schema(
       type: Date,
       required: true,
     },
+
     stylist: { type: Schema.Types.ObjectId, ref: 'Stylist' },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
   },

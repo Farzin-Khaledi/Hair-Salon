@@ -1,45 +1,21 @@
 import { useState } from "react";
 import axios from "axios";
+import DateTimePicker from 'react-datetime-picker';
 
 
-
-const services = [
-  {
-  name:"jen's haircut",
-  price:20,
-  duration: 30
-  }, 
-  {
-    name: "lady's haircut",
-    price: 20 ,
-    duration: 30,
-  },
-  {
-    name: "beard trim",
-    price: 10,
-    duration:15,
-  },
-  {
-    name: "color",
-    price: 45,
-    duration:40,
-  },
-  {
-    name: "Kid's haircut",
-    price: 10,
-    duration:20,
-  },
-];
+function AddAppointment({refreshAppointment}) {
+  const [service, setService] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [Stylist, setStylist] = useState('');
 
 
-function AddAppointment(props) {
-  const [selectedService, setSelectedService] = useState([]);
-  //const [data, setDate] = useState("");
-
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestBody = {selectedService};
+
+    const requestBody ={service,date,Stylist};
+   
+    console.log('service => ', requestBody)
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');
@@ -53,32 +29,42 @@ function AddAppointment(props) {
       )
       .then((response) => {
         // Reset the state
-        setSelectedService([]);
-        props.refreshAppointments();
+        setService("");
+        setDate("");
+        setStylist("");
+        refreshAppointment();
       })
       .catch((error) => console.log(error));
   };
- 
 
+    
+  const handleChange = (e) => {
+    setService(e.target.value)
+  } 
+//const animatedComponents = makeAnimated();
   return (
-    <div className="AddAppointment">
+      <div className="AddAppointment">
       <h3>Make an appointment</h3>
-      
-
-      <form onSubmit={handleSubmit}>
-        <label>Service : </label>
-        <select multi>
-          {services.map(service =>(<><option>{service.name}:{service.price}£ ,{service.duration} mins </option></>))}
-        </select>
-        <input>
-        <label>date : </label>
+       <form onSubmit={handleSubmit}>
+            <select onChange={handleChange}>
+                  <option value={"jen's haircut"}>Jen's haircut 20£</option>
+                  <option value={"lady's haircut"}>Lady's haircut 20£</option>
+                  <option value={"beard trim"}>Beard trim 10£</option>
+                  <option value={"color"}>color 10£</option>
+                  <option value={"highlight"}>highlight 10£</option>
+                  <option value={"kid's haircut"}>Kid's haircut 10£</option>
+                  <option value={"beard trim"}>Beard trim 10£</option>
+            </select>
+            <div>
+              <DateTimePicker onChange={setDate} value={date} />
+              </div>
         
-        </input>
-
-        <button type="submit">Submit</button>
+        <button type="submit">Book</button>
       </form>
     </div>
   );
 }
 
 export default AddAppointment;
+
+
